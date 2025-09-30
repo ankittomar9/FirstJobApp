@@ -1,0 +1,10 @@
+### Put request to update a company
+PUT http://localhost:8080/companies/1
+Content-Type: application/json
+
+{
+  "name": "TechCorp Updated",
+  "description": "Updated description for TechCorp"
+}
+
+###

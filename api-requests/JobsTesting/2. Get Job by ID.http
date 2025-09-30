@@ -1,0 +1,4 @@
+### GET request to get job by ID
+GET http://localhost:8080/jobs/1
+
+###

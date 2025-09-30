@@ -1,0 +1,4 @@
+### Delete request to delete a job
+DELETE http://localhost:8080/jobs/1
+
+###

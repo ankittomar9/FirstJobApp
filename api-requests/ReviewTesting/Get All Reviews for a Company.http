@@ -1,0 +1,4 @@
+### GET request to get all reviews for a company
+GET http://localhost:8080/companies/1/reviews
+
+###

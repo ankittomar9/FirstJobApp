@@ -1,0 +1,4 @@
+### GET request to delete a company
+DELETE http://localhost:8080/companies/1
+
+###

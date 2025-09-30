@@ -1,0 +1,4 @@
+### GET request to get all companies
+GET http://localhost:8080/companies
+
+###

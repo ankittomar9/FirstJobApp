@@ -1,0 +1,15 @@
+### PUT request to update a job
+PUT http://localhost:8080/jobs/1
+Content-Type: application/json
+
+{
+  "title": "Senior Java Developer (Updated)",
+  "description": "Looking for experienced Java developers with Spring Boot",
+  "minSalary": "85000",
+  "maxSalary": "125000",
+  "location": "Hybrid",
+  "company": {
+    "id": 1
+  }
+}
+###

@@ -1,0 +1,16 @@
+### POST request to create a new job
+POST http://localhost:8080/jobs
+Content-Type: application/json
+
+{
+  "title": "Backend Developer",
+  "description": "Looking for experienced backend developers",
+  "minSalary": "90000",
+  "maxSalary": "130000",
+  "location": "Remote",
+  "company": {
+    "id": 1
+  }
+}
+
+###

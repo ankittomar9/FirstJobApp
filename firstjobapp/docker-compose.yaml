@@ -1,43 +1,62 @@
+version: '3.8'
+
 services:
   postgres:
-    container_name: postgres_container
-    image: postgres
+    image: postgres:15-alpine
+    container_name: jobapp-postgres
     environment:
-      POSTGRES_USER: User_name
-      POSTGRES_PASSWORD: Your_Password
-      PGDATA: /data/postgres
-      #TZ: Asia/Kolkata
+      POSTGRES_DB: jobapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - postgres:/data/postgres
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
-      - postgres
-    restart: unless-stopped
+      - jobapp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   pgadmin:
-    container_name: pgadmin_container
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
+    container_name: jobapp-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-nagamaheshkendole@gmail.com}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-mahesh}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-      #TZ: 'Asia/Kolkata'
-      #PGADMIN_CONFIG_TZ: 'Asia/Kolkata'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
+      PGADMIN_DEFAULT_EMAIL: admin@jobapp.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
       - "5050:80"
-    networks:
+    depends_on:
       - postgres
+    networks:
+      - jobapp-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jobapp-backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/jobapp
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    networks:
+      - jobapp-network
     restart: unless-stopped
 
 networks:
-  postgres:
+  jobapp-network:
     driver: bridge
 
 volumes:
-  postgres:
-  pgadmin:
-
-
+  postgres_data:
+  pgadmin_data:

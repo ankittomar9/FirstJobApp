@@ -1,0 +1,11 @@
+### POST request to example server
+POST http://localhost:8080/companies/1/reviews
+Content-Type: application/json
+
+{
+  "title": "Great Work Environment",
+  "description": "Amazing culture and work-life balance",
+  "rating": 4.8
+}
+
+###

@@ -1,0 +1,9 @@
+## Put request to update a review
+PUT http://localhost:8080/companies/{companyId}/reviews/{reviewId}
+Content-Type: application/json
+
+{
+  "title": "Updated Review Title",
+  "description": "Updated review description",
+  "rating": 4.5
+}

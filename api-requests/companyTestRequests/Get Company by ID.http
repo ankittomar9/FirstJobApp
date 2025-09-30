@@ -1,0 +1,4 @@
+### GET request to get company by ID
+GET http://localhost:8080/companies/1
+
+###

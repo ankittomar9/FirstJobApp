@@ -1,0 +1,42 @@
+spring.application.name=firstjobapp
+
+# H2
+#spring.h2.console.enabled=true
+#spring.h2.console.path=/h2-console
+#spring.datasource.url=jdbc:h2:mem:test
+#spring.jpa.generate-ddl=true
+
+#PostgreSQL
+# application.properties
+# src/test/resources/application.properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/job app?currentSchema=public&useSSL=false&serverTimezone=Asia/Kolkata
+#spring.jpa.properties.hibernate.jdbc.time_zone=Asia/Kolkata
+spring.datasource.username=User_name
+spring.datasource.password=Your_password
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database=POSTGRESQL
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+
+
+
+spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.hibernate.ddl-auto=create-drop  # Before, the schema used to be created every time the application and the server runs and dropped everytime the application & server stops running.
+#spring.jpa.hibernate.ddl-auto=update
+
+
+#Actuator
+management.endpoints.web.exposure.include = *
+management.endpoint.health.show-details = always
+
+
+info.app.name=JobApplication
+##info.app.description= Job app built by Mahesh
+info.app.version=1.0.0
+
+# risky in production application, but for learning actuators and logging, its fine
+management.info.env.enabled = true
+management.endpoint.shutdown.enabled=true
+server.shutdown=graceful
+
+
