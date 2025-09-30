@@ -3,8 +3,8 @@ services:
     container_name: postgres_container
     image: postgres
     environment:
-      POSTGRES_USER: mahesh
-      POSTGRES_PASSWORD: mahesh
+      POSTGRES_USER: User_name
+      POSTGRES_PASSWORD: Your_Password
       PGDATA: /data/postgres
       #TZ: Asia/Kolkata
     volumes:
@@ -39,4 +39,5 @@ networks:
 volumes:
   postgres:
   pgadmin:
+
 
